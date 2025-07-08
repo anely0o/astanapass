@@ -208,7 +208,7 @@ body {
 
 .background-container {
   padding: 20px 0;
-  background-color: #f8fbfe;
+  background-color: #FFFFFF;
 }
 
 /*astana cards section*/
@@ -612,7 +612,7 @@ p {
   color: #555;
   line-height: 1.4;
   margin-bottom: 16px;
-  font-weight: 100px;
+  font-weight: 400px;
 }
 
 .journal-cards {
@@ -632,7 +632,7 @@ p {
 }
 
 .journal-caption {
-  font-weight: 100px;
+  font-weight: 400px;
   font-size: 16px;
   margin-top: 8px;
 }
@@ -964,13 +964,10 @@ p {
   
 }
 .footer-container {
-    max-width: 1500px;
-    margin: 0 auto;
-    position: relative;
-
-
-    padding-left: 10px;
-    padding-right: 10px;
+    max-width: none;
+    margin: 0 ;
+    padding-left: 0;
+    padding-right: 0;
 }
 .footer-bottom {
   width: 100%;
@@ -978,10 +975,9 @@ p {
 }
 
 .footer-content {
-
   display: flex;
   flex-wrap: nowrap;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 .footer-column {
   margin-top: 40px;
@@ -992,6 +988,7 @@ p {
   flex-wrap: nowrap;
   gap: 30px;
   flex: 1 1 80%;
+  padding-left:40px ;
 }
 
 .footer-column {
@@ -1026,7 +1023,8 @@ p {
 }
 
 .right-image {
-  width: 200px;
+  width: 400px;
+  max-width: 100%;
   height: auto;
   object-fit: contain;
 }
