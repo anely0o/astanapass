@@ -143,29 +143,31 @@ body {
 /*citypass*/
 .carousel-container {
   background-color: #f8fbfe;
-  margin-top:20px ;
-  position: relative;
+  padding: 20px 0;
   width: 100%;
-  max-width: 1000px;
-  margin: 20px auto;
   display: flex;
-  align-items: center;
   justify-content: center;
 }
-
+.carousel-inner {
+  max-width: 1300px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
 .carousel-wrapper {
   overflow: hidden;
-  width: 85%; /* Показ основного слайда и части следующего */
+  width: 100%; 
 }
 
 .carousel-track {
   display: flex;
   transition: transform 0.5s ease-in-out;
-  will-change: transform;
 }
 
 .carousel-slide {
-  flex: 0 0 80%; /* Слайд занимает 80%, остальное — для peek */
+  flex: 0 0 80%; 
   margin-right: 20px;
   border-radius: 16px;
   overflow: hidden;
@@ -192,18 +194,14 @@ body {
   align-items: center;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
-  z-index: 3;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
 }
 
 .nav.prev {
-  left: 45px;
+  left: 105px;
 }
 
 .nav.next {
-  right: 45px;
+  right: 105px;
 }
 
 .background-container {
@@ -212,19 +210,17 @@ body {
 }
 
 /*astana cards section*/
-.astana-container {
-  background-color: #f8fbfe;
-}
-.ASTANA-CARDS {
-  background-color: #f8fbfe;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 40px;
-  padding: 20px;
+.container {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 20px;
 }
-
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); /* 3 карточки на десктопе, 1-2 на мобилках */
+  gap: 32px;
+  margin-top: 40px;
+}
 .card {
   background-color: #f8fbfe;
   background: white;
@@ -235,19 +231,22 @@ body {
 
 .card-image {
   background-color: #f8fbfe;
-  height: 200px;
+  height: 180px;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 20px;
-  margin-bottom: 20px;
+}
+.card-image img {
+  width: 300px;
+  height: auto;
+  object-fit: contain;
+  max-width: 100%;
 }
 
 .ASTANA-CARDS img {
-  max-width: 100%;
-  max-height: 100%;
   object-fit: contain;
-  width: auto;
+  width: 220px;
   height: auto;
   filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.15));
 }
@@ -378,23 +377,30 @@ body {
 }
 /*info-section*/
 .info-section {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  padding: 60px 10px;
   background-color: #f8fbfe;
+  padding: 60px 20px;
+}
+
+.info-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  flex-wrap: wrap; /* чтобы адаптировалось на маленьких экранах */
   text-align: center;
 }
 
 .info-block {
-  max-width: none;
+  flex: 1 1 30%;
+  min-width: 280px;
   color: #1a1a1a;
 }
 
 .info-icon {
-  width: 200px;
-  height: 200px;
-  margin-bottom: 20px;
+  width: 250px;
+  height: 250px;
+  margin-bottom: 10px;
 }
 
 h3 {
@@ -412,7 +418,7 @@ p {
 
 /* popular section*/
 .popular-section {
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 60px auto;
   padding: 0 20px;
 }
@@ -432,10 +438,11 @@ p {
 
 .popular-cards {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 20px;
-  justify-content: space-between;
-  overflow-x: auto;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .popular-card {
@@ -685,7 +692,7 @@ p {
 
 /* faq section - Updated to match journal section layout */
 .faq-section {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 60px auto;
   padding: 0 20px;
 }
@@ -805,7 +812,7 @@ p {
 
 /* Instagram Section */
 .instagram-section {
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 60px auto;
   padding: 0 20px;
 }
@@ -882,10 +889,10 @@ p {
 .icon-item2 img {
   width: 30px;
   height: 30px;
-  filter: brightness(0) invert(1); /* белый цвет PNG */
+  filter: brightness(0) invert(1);
 }
 
-/* Описание снизу с прокруткой */
+/* description */
 .description {
   max-height: 120px;
   overflow-y: auto;
@@ -935,7 +942,7 @@ p {
 }
 /* partners section*/
 .partners-support-section {
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 60px auto;
   padding: 0 20px;
 }
@@ -964,10 +971,10 @@ p {
   
 }
 .footer-container {
-    max-width: none;
-    margin: 0 ;
-    padding-left: 0;
-    padding-right: 0;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 .footer-bottom {
   width: 100%;
@@ -989,6 +996,7 @@ p {
   gap: 30px;
   flex: 1 1 80%;
   padding-left:40px ;
+  padding-right:40px ;
 }
 
 .footer-column {
@@ -1161,6 +1169,7 @@ p {
   }
 
   .card-image {
+    justify-content: center;
     padding: 10px;
     height: auto;
   }

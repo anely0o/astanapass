@@ -21,83 +21,122 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-/* Journal Cards Slider (simple horizontal scroll with mobile support) */
-document.addEventListener("DOMContentLoaded", () => {
-  const track = document.querySelector(".journal-cards");
-  const nextBtn = document.querySelector(".next");
-  const prevBtn = document.querySelector(".prev");
-
-  if (!track || !nextBtn || !prevBtn) return;
-
-  const updateSlider = () => {
-    const card = document.querySelector(".journal-card");
-    if (!card) return;
-
-    const cardWidth = card.offsetWidth + 20;
-    const visibleCards = window.innerWidth < 768 ? 1 : 3;
-    const totalCards = document.querySelectorAll(".journal-card").length;
-    const maxPosition = totalCards - visibleCards;
-
-    let position = 0;
-
-    nextBtn.addEventListener("click", () => {
-      if (position < maxPosition) {
-        position++;
-        track.style.transform = `translateX(-${cardWidth * position}px)`;
-      }
-    });
-
-    prevBtn.addEventListener("click", () => {
-      if (position > 0) {
-        position--;
-        track.style.transform = `translateX(-${cardWidth * position}px)`;
-      }
-    });
-
-    // Reset transform on window resize
-    window.addEventListener("resize", () => {
-      track.style.transform = "translateX(0)";
-      position = 0;
-    });
+/* journal */
+function debounce(fn, wait) {
+  let timeout;
+  return function (...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => fn.apply(this, args), wait);
   };
+}
 
-  updateSlider();
+class Slider {
+  constructor(root) {
+    this.slider = root;
+    this.track = root.querySelector(".journal-cards");
+    this.prev = root.querySelector(".slider-btn.prev");
+    this.next = root.querySelector(".slider-btn.next");
+
+    this.slides = Array.from(this.track.children);
+    this.currentIndex = 0;
+    this.slideWidth = this.slides[0].offsetWidth + 20; // +gap
+
+    this.update = this.update.bind(this);
+    this.move = this.move.bind(this);
+
+    this.prev.addEventListener("click", () => this.move(-1));
+    this.next.addEventListener("click", () => this.move(+1));
+
+    window.addEventListener("resize", debounce(this.update, 100));
+    this.update();
+  }
+
+  update() {
+    this.slideWidth = this.slides[0].offsetWidth + 20; // +gap
+    this.track.style.transition = "transform 0.4s ease";
+    this.track.style.transform = `translateX(${-this.currentIndex * this.slideWidth}px)`;
+  }
+
+  move(direction) {
+    const maxIndex = this.slides.length - 1;
+    const nextIndex = this.currentIndex + direction;
+    if (nextIndex < 0 || nextIndex > maxIndex) return;
+
+    this.currentIndex = nextIndex;
+    this.track.style.transform = `translateX(${-this.currentIndex * this.slideWidth}px)`;
+  }
+}
+
+function initJournalSlider() {
+  const root = document.querySelector(".journal-slider-wrapper");
+  if (root) new Slider(root);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  initJournalSlider();
 });
 
 
+/* carousel */
 
-  document.addEventListener("DOMContentLoaded", function () {
-    const track = document.querySelector('.carousel-track');
-    const slides = document.querySelectorAll('.carousel-slide');
-    const slideCount = slides.length;
-    const slideWidth = slides[0].offsetWidth + 20;
+const track = document.querySelector('.carousel-track');
+const slides = document.querySelectorAll('.carousel-slide');
+const prevBtn = document.querySelector('.prev');
+const nextBtn = document.querySelector('.next');
 
-    let currentIndex = 0;
+let index = 1;
+let slideWidth = slides[0].offsetWidth + 20; //80% + margin-right
 
-    function updateSlidePosition() {
-      track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-    }
 
-    function moveSlide(direction) {
-      currentIndex += direction;
+const firstClone = slides[0].cloneNode(true);
+const lastClone = slides[slides.length - 1].cloneNode(true);
 
-      if (currentIndex < 0) {
-        currentIndex = slideCount - 2; // возврат к предпоследнему
-      } else if (currentIndex >= slideCount - 1) {
-        currentIndex = 0; // переход к первому
-      }
+firstClone.id = 'first-clone';
+lastClone.id = 'last-clone';
 
-      updateSlidePosition();
-    }
+track.appendChild(firstClone);
+track.insertBefore(lastClone, slides[0]);
 
-    document.querySelector('.nav.prev').addEventListener('click', () => moveSlide(-1));
-    document.querySelector('.nav.next').addEventListener('click', () => moveSlide(1));
+const allSlides = document.querySelectorAll('.carousel-slide');
 
-    window.addEventListener('resize', () => {
-      updateSlidePosition(); // корректируем при изменении ширины
-    });
 
-    updateSlidePosition();
-  });
+track.style.transform = `translateX(-${slideWidth * index}px)`;
+
+
+window.addEventListener('resize', () => {
+  slideWidth = slides[0].offsetWidth + 20;
+  track.style.transition = 'none';
+  track.style.transform = `translateX(-${slideWidth * index}px)`;
+});
+
+
+nextBtn.addEventListener('click', () => {
+  if (index >= allSlides.length - 1) return;
+  index++;
+  track.style.transition = 'transform 0.5s ease-in-out';
+  track.style.transform = `translateX(-${slideWidth * index}px)`;
+});
+
+prevBtn.addEventListener('click', () => {
+  if (index <= 0) return;
+  index--;
+  track.style.transition = 'transform 0.5s ease-in-out';
+  track.style.transform = `translateX(-${slideWidth * index}px)`;
+});
+
+
+track.addEventListener('transitionend', () => {
+  if (allSlides[index].id === 'first-clone') {
+    track.style.transition = 'none';
+    index = 1;
+    track.style.transform = `translateX(-${slideWidth * index}px)`;
+  }
+  if (allSlides[index].id === 'last-clone') {
+    track.style.transition = 'none';
+    index = allSlides.length - 2;
+    track.style.transform = `translateX(-${slideWidth * index}px)`;
+  }
+});
+
 
 
