@@ -211,7 +211,7 @@ body {
 
 /*astana cards section*/
 .container {
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -515,7 +515,7 @@ p {
 
 /*journal section*/
 .journal-section {
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 60px auto;
   padding: 0 20px;
 }
@@ -581,7 +581,6 @@ p {
   border-color: #00b2ff;
 }
 
-/* Позиционирование кнопок */
 .slider-btn.prev {
   left: -20px;
 }
@@ -692,7 +691,7 @@ p {
 
 /* faq section - Updated to match journal section layout */
 .faq-section {
-  max-width: 1400px;
+  max-width: 1300px;
   margin: 60px auto;
   padding: 0 20px;
 }
