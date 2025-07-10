@@ -138,5 +138,20 @@ track.addEventListener('transitionend', () => {
   }
 });
 
+/*pointer */
+document.addEventListener('DOMContentLoaded', () => {
+  const burger = document.getElementById('burger-toggle');
+  const navMenu = document.getElementById('nav-menu');
+
+  if (burger && navMenu) {
+    burger.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+      burger.classList.toggle('open');
+    });
+  } else {
+    console.warn("burger-toggle или nav-menu не найдены в DOM");
+  }
+});
+
 
 
