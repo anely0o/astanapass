@@ -154,4 +154,43 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+document.addEventListener("DOMContentLoaded", () => {
+  const track = document.querySelector(".journal-slider-track");
+  const cards = document.querySelectorAll(".journal-card");
+  const prev = document.querySelector(".slider-btn.prev");
+  const next = document.querySelector(".slider-btn.next");
+
+  let currentIndex = 0;
+
+  const updateSlider = () => {
+    const slideWidth = cards[0].offsetWidth;
+    track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+  };
+
+  if (window.innerWidth <= 768 && track && prev && next) {
+    next.addEventListener("click", () => {
+      if (currentIndex < cards.length - 1) {
+        currentIndex++;
+        updateSlider();
+      }
+    });
+
+    prev.addEventListener("click", () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        updateSlider();
+      }
+    });
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth <= 768) {
+        updateSlider();
+      } else {
+        track.style.transform = "none";
+      }
+    });
+  }
+});
+
+
 

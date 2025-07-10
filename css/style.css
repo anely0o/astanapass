@@ -1235,57 +1235,7 @@ p {
   }
 }
 
-@media (max-width: 768px) {
-  .footer-content {
-    flex-direction: column;
-    align-items: flex-start;
-  }
 
-  .footer-columns {
-    flex-direction: column;
-    gap: 30px;
-  }
-
-  .footer-column {
-    width: 100%;
-  }
-
-  .footer-image {
-    margin-top: 30px;
-    justify-content: center;
-    width: 100%;
-  }
-
-  .footer-image img {
-    max-width: 80%;
-    height: auto;
-  }
-
-  .footer-bottom {
-    text-align: center;
-    margin-top: 20px;
-  }
-
-  .subscribe-btn,
-  .order-call {
-    width: 100%;
-  }
-
-  .contacts-block {
-    align-items: flex-start;
-  }
-
-  .qr-codes {
-    transform: none;
-    position: static;
-    margin-top: 10px;
-  }
-
-  .social-icons {
-    justify-content: flex-start;
-    flex-wrap: wrap;
-  }
-}
 .burger {
   display: none;
   flex-direction: column;
@@ -1371,7 +1321,7 @@ p {
   }
 
   .slider-btn {
-    display: none; /* скрываем стрелки на мобилках */
+    display: none;
   }
 
   .journal-card-button {
@@ -1447,12 +1397,12 @@ p {
   }
 
   .qr-codes {
-    width: 100%;
-    max-width: 200px;
-    height: auto;
-    margin-top: 15px;
-    position: static;
-    transform: none;
+    display: block; /* обязательно для margin auto */
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  margin: 15px auto 0 auto;
+    
   }
 
   .footer-title {
@@ -1484,3 +1434,4 @@ p {
     max-width: 90%;
   }
 }
+
