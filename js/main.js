@@ -153,43 +153,29 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-
+/*journal */
 document.addEventListener("DOMContentLoaded", () => {
-  const track = document.querySelector(".journal-slider-track");
-  const cards = document.querySelectorAll(".journal-card");
-  const prev = document.querySelector(".slider-btn.prev");
-  const next = document.querySelector(".slider-btn.next");
+  const track = document.querySelector(".journal-cards");
+  const prevBtn = document.querySelector(".slider-btn.prev");
+  const nextBtn = document.querySelector(".slider-btn.next");
 
   let currentIndex = 0;
+  const cardWidth = track.querySelector(".journal-card").offsetWidth + 20; // 20px — это gap
 
-  const updateSlider = () => {
-    const slideWidth = cards[0].offsetWidth;
-    track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-  };
+  nextBtn.addEventListener("click", () => {
+    const maxIndex = track.children.length - 1;
+    if (currentIndex < maxIndex) {
+      currentIndex++;
+      track.style.transform = `translateX(-${cardWidth * currentIndex}px)`;
+    }
+  });
 
-  if (window.innerWidth <= 768 && track && prev && next) {
-    next.addEventListener("click", () => {
-      if (currentIndex < cards.length - 1) {
-        currentIndex++;
-        updateSlider();
-      }
-    });
-
-    prev.addEventListener("click", () => {
-      if (currentIndex > 0) {
-        currentIndex--;
-        updateSlider();
-      }
-    });
-
-    window.addEventListener("resize", () => {
-      if (window.innerWidth <= 768) {
-        updateSlider();
-      } else {
-        track.style.transform = "none";
-      }
-    });
-  }
+  prevBtn.addEventListener("click", () => {
+    if (currentIndex > 0) {
+      currentIndex--;
+      track.style.transform = `translateX(-${cardWidth * currentIndex}px)`;
+    }
+  });
 });
 
 
