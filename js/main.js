@@ -79,64 +79,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 /* carousel */
 
-const track = document.querySelector('.carousel-track');
-const slides = document.querySelectorAll('.carousel-slide');
-const prevBtn = document.querySelector('.prev');
-const nextBtn = document.querySelector('.next');
-
-let index = 1;
-let slideWidth = slides[0].offsetWidth + 20; //80% + margin-right
-
-
-const firstClone = slides[0].cloneNode(true);
-const lastClone = slides[slides.length - 1].cloneNode(true);
-
-firstClone.id = 'first-clone';
-lastClone.id = 'last-clone';
-
-track.appendChild(firstClone);
-track.insertBefore(lastClone, slides[0]);
-
-const allSlides = document.querySelectorAll('.carousel-slide');
-
-
-track.style.transform = `translateX(-${slideWidth * index}px)`;
-
-
-window.addEventListener('resize', () => {
-  slideWidth = slides[0].offsetWidth + 20;
-  track.style.transition = 'none';
-  track.style.transform = `translateX(-${slideWidth * index}px)`;
-});
-
-
-nextBtn.addEventListener('click', () => {
-  if (index >= allSlides.length - 1) return;
-  index++;
-  track.style.transition = 'transform 0.5s ease-in-out';
-  track.style.transform = `translateX(-${slideWidth * index}px)`;
-});
-
-prevBtn.addEventListener('click', () => {
-  if (index <= 0) return;
-  index--;
-  track.style.transition = 'transform 0.5s ease-in-out';
-  track.style.transform = `translateX(-${slideWidth * index}px)`;
-});
-
-
-track.addEventListener('transitionend', () => {
-  if (allSlides[index].id === 'first-clone') {
-    track.style.transition = 'none';
-    index = 1;
-    track.style.transform = `translateX(-${slideWidth * index}px)`;
-  }
-  if (allSlides[index].id === 'last-clone') {
-    track.style.transition = 'none';
-    index = allSlides.length - 2;
-    track.style.transform = `translateX(-${slideWidth * index}px)`;
-  }
-});
 
 /*pointer */
 document.addEventListener('DOMContentLoaded', () => {
@@ -178,5 +120,17 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+/*nav menu */
+const burgerBtn = document.getElementById('burger-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const closeBtn = document.getElementById('close-menu');
 
+  burgerBtn.addEventListener('click', () => {
+    mobileMenu.classList.add('active');
+    burgerBtn.classList.add('open');
+  });
 
+  closeBtn.addEventListener('click', () => {
+    mobileMenu.classList.remove('active');
+    burgerBtn.classList.remove('open');
+  });

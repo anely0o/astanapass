@@ -22,43 +22,69 @@
         ГРАФИК РАБОТЫ ДОСТОПРИМЕЧАТЕЛЬНОСТЕЙ СМОТРИТЕ В РАЗДЕЛЕ «СЕГОДНЯ ДОСТУПНО С ASTANA PASS»
     </div>
 
-    <nav class = "navbar">
-        <div class="navbar-container">
-        <div class="logo">
-            <img src="assets/images/Лого.png" alt="citypass logo">
-        </div>
-        <button class="burger" id="burger-toggle">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-
-    <div class="nav-menu" id="nav-menu">
-        <ul class = "nav-links" id="nav-menu">
-            <li><a href="#">ASTANA PASS</a></li>
-            <li><a href="#">MUSEUM PASS</a></li>
-            <li><a href="#">КУДА СХОДИТЬ?</a></li>
-            <li><a href="#">КУДА СХОДИТЬ</a></li>
-            <li><a href="#">ТУРИСТУ</a></li>
-            <li><a href="#">НОВОСТИ</a></li>
-        </ul>
-        <div class ="nav-actions">
-            <img src="assets/icons/searchnormal1.svg" alt="search" class="icon">
-            <img src="assets/icons/location.svg" alt="location" class="icon">
-            <select>
-                <option value="ru">РУС</option>
-                <option value="eng">ENG</option>
-            </select>
-
-            <button class="buy-btn">
-                Купить
-            <img src="assets/icons/bagtick.svg" alt="bagtick" class="icon cart-icon"></button>
-            
-            </div>
+    <nav class="navbar">
+  <div class="navbar-container">
+    <div class="logo">
+      <img src="assets/images/Лого.png" alt="citypass logo">
     </div>
 
-        </div>
-    </nav>
+    <!-- Мобильные действия -->
+    <div class="nav-actions mobile-only">
+      <img src="assets/icons/location.svg" alt="location" class="icon" />
+      <select class="lang-select">
+        <option value="ru">РУС</option>
+        <option value="eng">ENG</option>
+      </select>
+      <button class="burger" id="burger-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <button class="buy-btn">
+        Купить
+        <img src="assets/icons/bagtick.svg" alt="bagtick" class="icon cart-icon" />
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+  <div class="menu-header">
+    <img src="assets/images/Лого.png" alt="logo" class="menu-logo" />
+    <button id="close-menu" class="close-btn">×</button>
+  </div>
+  <input type="text" placeholder="Поиск" class="menu-search" />
+  <ul class="menu-links">
+    <li><a href="#">ASTANA PASS</a></li>
+    <li><a href="#">MUSEUM PASS</a></li>
+    <li><a href="#">КУДА СХОДИТЬ?</a></li>
+    <li><a href="#">ТУРИСТУ</a></li>
+    <li><a href="#">НОВОСТИ</a></li>
+  </ul>
+</div>
+
+    <!-- Десктопная панель -->
+    <div class="nav-actions desktop-only">
+      <ul class="nav-links">
+        <li><a href="#">ASTANA PASS</a></li>
+        <li><a href="#">MUSEUM PASS</a></li>
+        <li><a href="#">КУДА СХОДИТЬ?</a></li>
+        <li><a href="#">ТУРИСТУ</a></li>
+        <li><a href="#">НОВОСТИ</a></li>
+      </ul>
+
+      <!-- действия: язык, корзина и т.д. -->
+      <img src="assets/icons/searchnormal1.svg" alt="search" class="icon">
+      <img src="assets/icons/location.svg" alt="location" class="icon">
+      <select class="lang-select">
+        <option value="ru">РУС</option>
+        <option value="eng">ENG</option>
+      </select>
+      <button class="buy-btn">
+        Купить
+        <img src="assets/icons/bagtick.svg" alt="bagtick" class="icon cart-icon">
+      </button>
+    </div>
+  </div>
+</nav>
+
     <div class="background-container">
     <!--citypass slider-->
 <div class="carousel-container">
