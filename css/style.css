@@ -144,6 +144,9 @@ html, body {
 .mobile-only {
   display: none;
 }
+.mobile-menu {
+  display: none;
+}
 /*citypass*/
 .carousel-container {
   background-color: #f8fbfe;
@@ -1407,6 +1410,9 @@ p {
   text-decoration: none;
   font-size: 18px;
   color: #333;
+}
+.mobile-menu {
+  display: flex;
 }
 
 }
