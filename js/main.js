@@ -78,7 +78,67 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 /* carousel */
+document.addEventListener('DOMContentLoaded', function () {
+    const track = document.querySelector('.carousel-track');
+    const slides = Array.from(document.querySelectorAll('.carousel-slide'));
+    const prevBtn = document.querySelector('.nav.prev');
+    const nextBtn = document.querySelector('.nav.next');
 
+    const slideWidth = slides[0].offsetWidth + 20; // 20px margin-right
+    let currentIndex = 1;
+
+    // Клонируем первый и последний слайды
+    const firstClone = slides[0].cloneNode(true);
+    const lastClone = slides[slides.length - 1].cloneNode(true);
+
+    // Помечаем клонированные
+    firstClone.classList.add('clone');
+    lastClone.classList.add('clone');
+
+    // Добавляем в DOM
+    track.appendChild(firstClone);
+    track.insertBefore(lastClone, slides[0]);
+
+    // Обновим список слайдов
+    const allSlides = Array.from(document.querySelectorAll('.carousel-slide'));
+
+    // Установим начальную позицию (на "реальный" первый слайд)
+    track.style.transform = `translateX(-${slideWidth * currentIndex}px)`;
+
+    const scrollToSlide = (index) => {
+      track.style.transition = 'transform 0.5s ease-in-out';
+      track.style.transform = `translateX(-${slideWidth * index}px)`;
+    };
+
+    nextBtn.addEventListener('click', () => {
+      if (currentIndex >= allSlides.length - 1) return;
+      currentIndex++;
+      scrollToSlide(currentIndex);
+    });
+
+    prevBtn.addEventListener('click', () => {
+      if (currentIndex <= 0) return;
+      currentIndex--;
+      scrollToSlide(currentIndex);
+    });
+
+    track.addEventListener('transitionend', () => {
+      if (allSlides[currentIndex].classList.contains('clone')) {
+        track.style.transition = 'none';
+        if (currentIndex === allSlides.length - 1) {
+          currentIndex = 1;
+        } else if (currentIndex === 0) {
+          currentIndex = allSlides.length - 2;
+        }
+        track.style.transform = `translateX(-${slideWidth * currentIndex}px)`;
+      }
+    });
+
+    window.addEventListener('resize', () => {
+      track.style.transition = 'none';
+      track.style.transform = `translateX(-${slideWidth * currentIndex}px)`;
+    });
+  });
 
 /*pointer */
 document.addEventListener('DOMContentLoaded', () => {
