@@ -1353,7 +1353,7 @@ p {
   position: fixed;
   top: 0;
   right: -100%;
-  width: 100vw;
+  width: 50vw;
   height: 100vh;
   background: white;
   z-index: 2000;
